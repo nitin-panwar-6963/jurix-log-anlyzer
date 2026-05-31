@@ -13,15 +13,16 @@ app = Flask(__name__)
 # ==========================================
 # 🛠️ HARDCORE CONFIGURATIONS (INTEGRATION MATRIX)
 # ==========================================
-GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "YOUR_API_HERE")
+# Groq_API_KEY ko replace karke COHERE_API_KEY environment variable setup kiya hai
+COHERE_API_KEY = os.environ.get("COHERE_API_KEY", "YOUR_COHERE_API_KEY_HERE")
 
 # Flask-Mail / SMTP Configuration
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = ''       # <-- Sender/System Email
-app.config['MAIL_PASSWORD'] = ''           # <-- Gmail App Password
-app.config['MAIL_DEFAULT_SENDER'] = ''
+app.config['MAIL_USERNAME'] = ''       # <-- Fixed Sender/System Email
+app.config['MAIL_PASSWORD'] = ''                 # <-- Fixed Gmail App Password
+app.config['MAIL_DEFAULT_SENDER'] = ('JurixAI SRE Kernel 🛡️', 'nitinpanwar6963@gmail.com')
 
 mail = Mail(app)
 
@@ -58,7 +59,7 @@ def generate_incident_pdf(filename, job_name, build_number, error_code, ai_text)
         [Paragraph("<b>FAILING PIPELINE:</b>", body_style), Paragraph(f"{job_name} (Build #{build_number})", body_style)],
         [Paragraph("<b>ERROR CATEGORY:</b>", body_style), Paragraph(error_code, body_style)],
         [Paragraph("<b>TRIAGE OWNER:</b>", body_style), Paragraph("Syntax Squad 🛡️", body_style)],
-        [Paragraph("<b>DIAGNOSTIC ENGINE:</b>", body_style), Paragraph("Jurix SRE Kernel v2.0", body_style)]
+        [Paragraph("<b>DIAGNOSTIC ENGINE:</b>", body_style), Paragraph("Jurix SRE Kernel v2.0 (Cohere Engine)", body_style)]
     ]
 
     meta_table = Table(table_data, colWidths=[140, 360])
@@ -76,7 +77,6 @@ def generate_incident_pdf(filename, job_name, build_number, error_code, ai_text)
     story.append(Spacer(1, 5))
 
     # 🔥 🛠️ BULLETPROOF REPORTLAB PDF PARSER SANITIZATION LAYER 🔥
-    # Saare classes, divs, spans aur invalid attributes ko completely clean/convert karega taaki ReportLab crash na ho
     clean_text = ai_text
     clean_text = re.sub(r'<div[^>]*>', '', clean_text)
     clean_text = re.sub(r'</div>', '\n', clean_text)
@@ -101,15 +101,16 @@ def generate_incident_pdf(filename, job_name, build_number, error_code, ai_text)
     doc.build(story)
 
 # ==========================================
-# 🧠 CORE ENGINE UTILITY (GROQ RUNTIME LOOP)
+# 🧠 CORE ENGINE UTILITY (COHERE RUNTIME LOOP)
 # ==========================================
 def run_sre_ai_engine(job_name, build_number, cleaned_logs):
     """
-    Logs metadata ko Llama-3.3 Core model ke sath dynamic query hit process karta hai.
+    Logs metadata ko Cohere Command-R-Plus model ke sath dynamic query hit process karta hai.
     """
-    groq_url = "https://api.groq.com/openai/v1/chat/completions"
+    # Cohere Chat Endpoint Vector URL
+    cohere_url = "https://api.cohere.com/v1/chat"
     headers = {
-        "Authorization": f"Bearer {GROQ_API_KEY}",
+        "Authorization": f"Bearer {COHERE_API_KEY}",
         "Content-Type": "application/json"
     }
 
@@ -124,9 +125,8 @@ def run_sre_ai_engine(job_name, build_number, cleaned_logs):
           <div class="summary-grid">
               <div class="summary-item"><span class="s-label">FAILING NODE:</span><span class="s-value text-cyan">{job_name}</span></div>
               <div class="summary-item"><span class="s-label">BUILD ID:</span><span class="s-value text-pink">Build #{build_number}</span></div>
-              <div class="summary-item"><span class="s-label">DIAGNOSTIC ENGINE:</span><span class="s-value" style="color: var(--accent-purple);">JurixAI SRE Engine v2.0</span></div>
+              <div class="summary-item"><span class="s-label">DIAGNOSTIC ENGINE:</span><span class="s-value" style="color: var(--accent-purple);">JurixAI SRE Engine v2.0 (Cohere Command Core)</span></div>
               <div class="summary-item"><span class="s-label">TRIAGE OWNER:</span><span class="s-value">Syntax Squad 🛡️</span></div>
-           Welch parameters or style details
           </div>
       </div>
     - <h3>🔍 [2] REASON KYA THA? (ROOT CAUSE ANALYSIS)</h3>
@@ -139,17 +139,20 @@ def run_sre_ai_engine(job_name, build_number, cleaned_logs):
     """
 
     payload = {
-        "model": "llama-3.3-70b-versatile",
-        "messages": [
-            {"role": "system", "content": "You are a precise automated SRE diagnostic backend node. You output structural alerts context in Hinglish with raw HTML elements."},
-            {"role": "user", "content": ai_prompt}
-        ],
-        "temperature": 0.15,
-        "max_tokens": 900
+        "model": "command-r-plus",
+        "message": ai_prompt,
+        "preamble": "You are a precise automated SRE diagnostic backend node. You output structural alerts context in Hinglish with raw HTML elements.",
+        "temperature": 0.15
     }
 
-    response = requests.post(groq_url, headers=headers, json=payload)
-    return response.json()['choices'][0]['message']['content']
+    try:
+        response = requests.post(cohere_url, headers=headers, json=payload)
+        response.raise_for_status()
+        # Cohere API response text content extracts from 'text' parameter key
+        return response.json()['text']
+    except Exception as e:
+        print(f"🚨 COHERE INTERFACE ENGINE EXCEPTION: {str(e)}")
+        return f"<h3>🚨 EXCEPTION DURING ANALYSIS</h3><p>{str(e)}</p>"
 
 # ==========================================
 # 🚀 CORE WEB ROUTES & WEBHOOK PORTAL
@@ -192,7 +195,7 @@ def jenkins_failure_webhook():
         # Invoke AI Execution
         ai_solution = run_sre_ai_engine(job_name, build_number, cleaned_logs)
 
-        # Compile PDF Attachment (Iske andar automatic filter sanitize karega ab!)
+        # Compile PDF Attachment
         pdf_filename = f"Incident_Report_Build_{build_number}.pdf"
         generate_incident_pdf(pdf_filename, job_name, build_number, "Jenkins Pipeline Automation Crash", ai_solution)
 
