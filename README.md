@@ -209,7 +209,7 @@ post {
 
 Project Lead & System Infrastructure Architect
 
-### 📑 Gungun Kumari
+### 📑 Gunjan Kumari
 
 Documentation & Presentation Lead
 
