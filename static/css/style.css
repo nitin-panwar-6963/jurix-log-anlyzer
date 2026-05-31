@@ -1,0 +1,334 @@
+/* --- Core Variables & System Palette Framework --- */
+:root {
+    --bg-main: #060814;
+    --bg-card: rgba(13, 18, 41, 0.45);
+    --border-color: rgba(0, 240, 255, 0.15);
+    --text-main: #e2e8f0;
+    --text-muted: #64748b;
+    --accent-cyan: #00f0ff;
+    --accent-pink: #ff4a80;
+    --accent-purple: #9d4edd;
+}
+
+/* --- Base Global Structural Layout Resets --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    line-height: 1.5;
+}
+
+/* --- High Fidelity Futuristic Vector Glow Spheres --- */
+.blur-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(140px);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.35;
+}
+.glow-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--accent-cyan);
+    top: -100px;
+    left: -150px;
+}
+.glow-2 {
+    width: 500px;
+    height: 500px;
+    background: var(--accent-purple);
+    bottom: -150px;
+    right: -100px;
+}
+
+/* --- Structural App Grid Wrap --- */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    position: relative;
+    z-index: 10;
+}
+
+/* --- Premium Corporate Navigation Header Segment --- */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+    margin-bottom: 35px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.logo-icon {
+    font-size: 26px;
+}
+.logo-area h1 {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+.gradient-text {
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 6px 14px;
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.status-pulse {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--accent-cyan);
+}
+.status-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+}
+
+/* --- Grid Distribution Boundaries --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 30px;
+}
+
+@media (max-width: 992px) {
+    .dashboard-grid { grid-template-columns: 1fr; }
+}
+
+/* --- Glassmorphic Common Base Panels Framework --- */
+.panel {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 15px;
+}
+.panel-icon { font-size: 22px; }
+.panel-title { font-size: 16px; font-weight: 700; color: #ffffff; }
+.panel-subtitle { font-size: 12px; color: var(--text-muted); }
+
+/* --- COLUMN 1: Metadata Report Elements Custom Designs --- */
+.project-meta-card {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255,255,255,0.03);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    border-bottom: 1px dashed rgba(255,255,255,0.04);
+    padding-bottom: 8px;
+}
+.meta-row:last-of-type { border: none; padding: 0; }
+.m-label { font-weight: 600; color: var(--text-muted); letter-spacing: 0.5px;}
+.m-val { font-weight: 700; color: #ffffff; }
+
+.report-block { margin-top: 25px; }
+.report-block h3 { font-size: 13px; color: #ffffff; margin-bottom: 10px; letter-spacing: 0.5px; }
+.report-block p { font-size: 13.5px; color: #94a3b8; line-height: 1.6; text-align: justify; }
+
+.tech-tags-list { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin-top: 10px;}
+.tech-tags-list li {
+    background: rgba(0, 240, 255, 0.05);
+    border: 1px solid rgba(0, 240, 255, 0.15);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent-cyan);
+}
+
+/* --- COLUMN 2: Feature Workspace Modules Control Matrix --- */
+.feature-module-card {
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255,255,255,0.03);
+    padding: 25px;
+    border-radius: 20px;
+    position: relative;
+}
+.active-mod { border-left: 4px solid var(--accent-cyan); }
+
+.mod-badge {
+    position: absolute;
+    top: 22px;
+    right: 25px;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(0, 240, 255, 0.1);
+    color: var(--accent-cyan);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    letter-spacing: 0.5px;
+}
+
+.feature-module-card h3 { font-size: 16px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
+.feature-module-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 18px; }
+
+.file-monitor-box {
+    background: rgba(0,0,0,0.35);
+    padding: 12px 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(255,255,255,0.02);
+}
+.f-label { font-weight: 600; color: var(--text-muted); }
+.file-monitor-box code { font-family: 'JetBrains Mono', monospace; color: var(--accent-pink); font-weight: 700;}
+
+/* --- Premium Kinetic Micro-interaction Core Actions Buttons --- */
+.premium-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #00f0ff 0%, #0077ff 100%);
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 240, 255, 0.25);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.premium-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 240, 255, 0.4);
+    filter: brightness(1.1);
+}
+.premium-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+.btn-text { font-size: 12.5px; font-weight: 800; color: #000; letter-spacing: 0.5px; }
+
+/* --- AI Interactive Workspace Result Container Panel --- */
+.response-container { margin-top: 25px; min-height: 200px;}
+.state-message {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* --- High-Fidelity Futuristic Animation Canvas Spinner --- */
+.loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.spinner-wrapper {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+.spinner-outer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid transparent;
+    border-top-color: var(--accent-cyan);
+    border-bottom-color: var(--accent-cyan);
+    border-radius: 50%;
+    animation: spin 1.2s linear infinite;
+}
+.spinner-inner {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    top: 15%;
+    left: 15%;
+    border: 2.5px solid transparent;
+    border-left-color: var(--accent-pink);
+    border-right-color: var(--accent-pink);
+    border-radius: 50%;
+    animation: spin-reverse 0.9s linear infinite;
+}
+.loading-text { font-size: 12px; color: var(--accent-cyan); font-weight: 600; letter-spacing: 0.5px;}
+
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes spin-reverse { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
+
+/* --- AI Injectable Rich Content Styling Ecosystem --- */
+.output-content {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 22px;
+    font-size: 14px;
+    animation: fadeIn 0.4s ease-out forwards;
+}
+.output-content h3 { font-size: 13.5px; color: #ffffff; margin-top: 20px; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 6px; font-weight: 700;}
+.output-content h3:first-of-type { margin-top: 0; }
+.output-content p { color: #cbd5e1; line-height: 1.6; margin-bottom: 12px;}
+.output-content ul { list-style: none; margin-left: 5px; margin-bottom: 15px;}
+.output-content li { position: relative; padding-left: 18px; margin-bottom: 8px; color: #cbd5e1; line-height: 1.5;}
+.output-content li::before { content: "•"; position: absolute; left: 0; color: var(--accent-cyan); font-weight: bold; font-size: 16px; top: -1px;}
+.output-content code { font-family: 'JetBrains Mono', monospace; background: #090d1a; color: #38bdf8; padding: 4px 10px; border-radius: 6px; font-size: 12.5px; border: 1px solid rgba(56, 189, 248, 0.15); display: inline-block; margin-top: 5px; width: 100%; word-break: break-all;}
+
+/* --- Summary Report Embedded Dynamic Box Component --- */
+.summary-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.01) 0%, rgba(0, 240, 255, 0.02) 100%);
+    border: 1px dashed rgba(0, 240, 255, 0.25);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 15px;
+}
+.summary-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; margin-bottom: 12px; }
+.summary-header h4 { font-size: 11px; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; }
+.badge { font-size: 9px; font-weight: 800; padding: 3px 8px; border-radius: 4px; }
+.badge-danger { background: rgba(255, 74, 128, 0.15); color: var(--accent-pink); border: 1px solid rgba(255, 74, 128, 0.3); }
+.summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.summary-item { display: flex; flex-direction: column; gap: 2px; }
+.s-label { font-size: 10px; font-weight: 600; color: var(--text-muted); }
+.s-value { font-size: 12px; font-weight: 700; color: #ffffff; }
+.text-cyan { color: var(--accent-cyan) !important; }
+.text-pink { color: var(--accent-pink) !important; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }

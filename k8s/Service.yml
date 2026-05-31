@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: log-service
+  namespace: ai-log
+spec:
+  selector:
+    app: ai-log
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 5000

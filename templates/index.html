@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JurixAI - SRE Control Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="blur-glow glow-1"></div>
+<div class="blur-glow glow-2"></div>
+
+<div class="container">
+    <header class="dashboard-header">
+        <div class="logo-area">
+            <div class="logo-icon">🤖</div>
+            <h1>JurixAI <span class="gradient-text">PRODUCT CONTROL</span></h1>
+        </div>
+        <div class="header-actions">
+            <div class="status-pulse"></div>
+            <div class="status-badge">Syntax Squad Core v2.0</div>
+        </div>
+    </header>
+
+    <div class="dashboard-grid">
+        
+        <section class="panel project-report-panel">
+            <div class="panel-header">
+                <span class="panel-icon">📄</span>
+                <div>
+                    <h2 class="panel-title">Project Specification Report</h2>
+                    <p class="panel-subtitle">Technical blueprint & architecture metadata</p>
+                </div>
+            </div>
+
+            <div class="project-meta-card">
+                <div class="meta-row">
+                    <span class="m-label">PROJECT NAME</span>
+                    <span class="m-val text-cyan">JurixAI Platform Suite</span>
+                </div>
+                <div class="meta-row">
+                    <span class="m-label">DEVELOPMENT TEAM</span>
+                    <span class="m-val">Syntax Squad 🛡️</span>
+                </div>
+                <div class="meta-row">
+                    <span class="m-label">TEAM LEADER</span>
+                    <span class="m-val">Nitin Panwar</span>
+                </div>
+                <div class="meta-row">
+                    <span class="m-label">CORE ARCHITECTURE</span>
+                    <span class="m-val">Flask REST API Matrix</span>
+                </div>
+                <div class="meta-row">
+                    <span class="m-label">INTEGRATED CORE</span>
+                    <span class="m-val text-pink">Llama-3.3-70b-versatile</span>
+                </div>
+            </div>
+
+            <div class="report-block">
+                <h3>🚀 PROJECT VISION</h3>
+                <p>JurixAI ek advanced intelligent enterprise ecosystem hai jo cloud infrastructure monitoring aur software development lifecycle parameters ko optimize karta hai. Yeh chaotic pipeline states ko standard legible metrics dashboards aur automated email PDF reports me translate karta hai.</p>
+            </div>
+
+            <div class="report-block">
+                <h3>🛠️ CORE SYSTEM TECH STACK</h3>
+                <ul class="tech-tags-list">
+                    <li>Flask Backend</li>
+                    <li>Asynchronous Vanilla JS</li>
+                    <li>Dockerization Matrix</li>
+                    <li>Groq REST Gateway</li>
+                    <li>ReportLab Factory</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="panel features-suite-panel">
+            <div class="panel-header">
+                <span class="panel-icon">⚙️</span>
+                <div>
+                    <h2 class="panel-title">Active Feature Modules</h2>
+                    <p class="panel-subtitle">Execute diagnostic engine layers manually</p>
+                </div>
+            </div>
+
+            <div class="feature-module-card active-mod">
+                <div class="mod-badge">FLAGSHIP FEATURE</div>
+                <h3>⚡ Jurix SRE Engine</h3>
+                <p>Automated logs analytics loop. Targets failure traces instantly to generate deep Root Cause Analysis with 3-Step Remediation Playbooks.</p>
+                
+                <div class="file-monitor-box">
+                    <span class="f-label">MONITORED TARGET:</span>
+                    <code>logs/jenkins_output.log</code>
+                </div>
+
+                <button id="scanBtn" class="premium-btn" onclick="triggerLocalFileAnalysis()">
+                    <span class="btn-text">LAUNCH SRE DIAGNOSTIC</span>
+                </button>
+            </div>
+
+            <div class="response-container">
+                <div id="placeholder" class="state-message placeholder">
+                    <p>Select any active feature module parameter above to evaluate real-time AI analytics matrix context inside this view portal.</p>
+                </div>
+                
+                <div id="loader" class="state-message loader" style="display: none;">
+                    <div class="spinner-wrapper">
+                        <div class="spinner-outer"></div>
+                        <div class="spinner-inner"></div>
+                    </div>
+                    <p class="loading-text">Analyzing file metadata system nodes via JurixAI SRE Engine Core...</p>
+                </div>
+                
+                <div id="outputContent" class="output-content" style="display: none;"></div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+<script>
+    async function triggerLocalFileAnalysis() {
+        const btn = document.getElementById('scanBtn');
+        const placeholder = document.getElementById('placeholder');
+        const loader = document.getElementById('loader');
+        const output = document.getElementById('outputContent');
+
+        // Lock button, clear fields and display high fidelity loaders
+        btn.disabled = true;
+        placeholder.style.display = 'none';
+        output.style.display = 'none';
+        loader.style.display = 'flex';
+
+        try {
+            const response = await fetch('/analyze-file', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            const data = await response.json();
+            loader.style.display = 'none';
+            btn.disabled = false;
+
+            if (response.ok && data.status === 'success') {
+                // Populate responsive HTML response generated natively from app.py
+                output.innerHTML = data.analysis;
+                output.style.display = 'block';
+                output.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                placeholder.innerHTML = `<p style="color: #ff4a80;">⚠️ Fault State: ${data.message || "Failed execution parameters"}</p>`;
+                placeholder.style.display = 'block';
+            }
+        } catch (err) {
+            loader.style.display = 'none';
+            btn.disabled = false;
+            placeholder.innerHTML = `<p style="color: #ff4a80;">🚨 Critical Endpoint Failure Matrix Connection Terminated.</p>`;
+            placeholder.style.display = 'block';
+        }
+    }
+</script>
+</body>
+</html>

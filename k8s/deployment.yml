@@ -1,0 +1,25 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: ai-log-dep
+  namespace: ai-log
+spec:
+  replicas: 2
+  selector: 
+    matchLabels:
+      app: ai-log
+  template:
+    metadata:
+      name: ai-log
+      labels:
+        app: ai-log
+
+    spec:
+      containers:
+      - name: ai-log-analyzer
+        image: nitinpanwar6963/log-analyzer:latest
+        ports:
+        - containerPort: 5000
+        envFrom:
+        - secretRef:
+            name: log-secret
