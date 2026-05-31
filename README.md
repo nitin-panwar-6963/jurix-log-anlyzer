@@ -17,7 +17,7 @@ Transforming Jenkins Failures into AI-Generated Root Cause Analysis, Automated I
 ![Jenkins](https://img.shields.io/badge/Jenkins-CI/CD-D24939?style=for-the-badge\&logo=jenkins\&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Containerization-2496ED?style=for-the-badge\&logo=docker\&logoColor=white)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-Orchestration-326CE5?style=for-the-badge\&logo=kubernetes\&logoColor=white)
-![Gemini](https://img.shields.io/badge/Google-Gemini_AI-4285F4?style=for-the-badge\&logo=google)
+![Cohere](https://img.shields.io/badge/Cohere-AI_Engine-FF6B35?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success?style=for-the-badge)
 
 </div>
@@ -32,7 +32,7 @@ Instead of manually analyzing thousands of lines of Jenkins console output, Juri
 
 ✅ Captures pipeline failures
 ✅ Sends logs through a secure webhook gateway
-✅ Generates AI-powered Root Cause Analysis (RCA)
+✅ Generates AI-powered Root Cause Analysis (RCA) using Cohere AI
 ✅ Creates enterprise-grade PDF reports
 ✅ Delivers remediation guidance to stakeholders
 
@@ -50,7 +50,7 @@ Instead of manually analyzing thousands of lines of Jenkins console output, Juri
 🌐 Flask Webhook Gateway
             │
             ▼
-🤖 Google Gemini AI Engine
+🤖 Cohere AI Engine
             │
             ▼
 🔍 Root Cause Analysis
@@ -71,7 +71,7 @@ Instead of manually analyzing thousands of lines of Jenkins console output, Juri
 
 ### 🤖 AI-Powered Root Cause Analysis
 
-Utilizes Google Gemini AI to identify deployment, infrastructure, networking, and application failures.
+Utilizes Cohere AI to identify deployment, infrastructure, networking, Kubernetes, and application failures.
 
 ### 📄 Automated Incident Reporting
 
@@ -108,7 +108,7 @@ Sensitive credentials are isolated through Kubernetes Secrets.
                          │
         ┌────────────────┴────────────────┐
         ▼                                 ▼
- Google Gemini AI                 PDF Generator
+      Cohere AI                   PDF Generator
         │                                 │
         └────────────────┬────────────────┘
                          ▼
@@ -139,6 +139,9 @@ JurixAI-SRE-Kernel/
 │   └── css/
 │       └── style.css
 │
+├── reports/
+│   └── incident_report.pdf
+│
 ├── app.py
 ├── Dockerfile
 ├── requirements.txt
@@ -152,7 +155,7 @@ JurixAI-SRE-Kernel/
 | Layer         | Technology        |
 | ------------- | ----------------- |
 | Backend       | Python, Flask     |
-| AI Engine     | Google Gemini API |
+| AI Engine     | Cohere API        |
 | CI/CD         | Jenkins           |
 | Containers    | Docker            |
 | Orchestration | Kubernetes (Kind) |
@@ -180,7 +183,7 @@ kubectl apply -f k8s/deployment.yml
 # Expose Service
 kubectl apply -f k8s/Service.yml
 
-# Verify
+# Verify Deployment
 kubectl get all -n jurixai-sre
 ```
 
@@ -188,15 +191,16 @@ kubectl get all -n jurixai-sre
 
 # 🚨 Jenkins Integration
 
-The included Jenkinsfile automatically executes a failure hook whenever the pipeline enters a failed state.
+The included Jenkinsfile automatically executes a failure workflow whenever a pipeline enters a failed state.
 
 ```groovy
 post {
     failure {
-        // Capture Logs
-        // Send Webhook
-        // Generate RCA
-        // Dispatch Alert
+        // Capture Jenkins Logs
+        // Trigger Webhook
+        // Generate RCA via Cohere AI
+        // Create PDF Report
+        // Dispatch Email Alert
     }
 }
 ```
@@ -227,7 +231,7 @@ Backend Support Engineer
 
 ## 🌟 From Failure Detection to Automated Resolution
 
-### Built by Developers. Designed for Reliability.
+### AI-Powered Reliability Engineering for Modern DevOps Teams
 
 ⭐ Star the repository if you found this project useful.
 
