@@ -1,168 +1,205 @@
 <div align="center">
 
-# 🛡️ JurixAI SRE Kernel
+<img src="https://capsule-render.vercel.app/api?type=waving&height=250&color=0:0f172a,100:06b6d4&text=JurixAI%20SRE%20Kernel%20v2.0&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=40"/>
 
-### Autonomous Incident Response Engine for Modern DevOps Infrastructure
+<h3>🛡️ AI-Powered Incident Response & Self-Triage CI/CD Intelligence Platform</h3>
 
-<p align="center">
-<b>Detect Failures • Analyze Root Causes • Generate Reports • Notify Teams • Accelerate Recovery</b>
+<p>
+Transforming Jenkins Failures into AI-Generated Root Cause Analysis, Automated Incident Reports, and Instant Remediation Playbooks.
 </p>
 
----
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=22&duration=3500&pause=1000&color=00D9FF&center=true&vCenter=true&width=900&lines=AI-Powered+Root+Cause+Analysis;Automated+Incident+Response;Jenkins+Failure+Detection;Kubernetes+Native+Deployment;Enterprise+AIOps+Platform" />
 
-### 🚀 Turning CI/CD Failures into Actionable Intelligence
+<br>
 
-JurixAI is an AI-powered Site Reliability Engineering platform that automatically investigates Jenkins pipeline failures, performs intelligent Root Cause Analysis, generates incident reports, and delivers remediation guidance in real time.
-
----
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge\&logo=python\&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge\&logo=flask)
-![Jenkins](https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge\&logo=jenkins\&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge\&logo=docker\&logoColor=white)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge\&logo=kubernetes\&logoColor=white)
-![Google Gemini](https://img.shields.io/badge/Google-Gemini_AI-4285F4?style=for-the-badge\&logo=google)
-![License](https://img.shields.io/badge/License-MIT-success?style=for-the-badge)
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge\&logo=python\&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-Backend-black?style=for-the-badge\&logo=flask)
+![Jenkins](https://img.shields.io/badge/Jenkins-CI/CD-D24939?style=for-the-badge\&logo=jenkins\&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Containerization-2496ED?style=for-the-badge\&logo=docker\&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-Orchestration-326CE5?style=for-the-badge\&logo=kubernetes\&logoColor=white)
+![Gemini](https://img.shields.io/badge/Google-Gemini_AI-4285F4?style=for-the-badge\&logo=google)
+![Status](https://img.shields.io/badge/Status-Production_Ready-success?style=for-the-badge)
 
 </div>
 
 ---
 
-# 🌍 The Problem
+# 🚀 Overview
 
-Modern CI/CD pipelines produce thousands of log entries during failures.
+**JurixAI SRE Kernel v2.0** is an AI-driven AIOps and Site Reliability Engineering platform designed to automate incident triage, root cause analysis, reporting, and alerting across modern CI/CD environments.
 
-When deployments break, engineers often spend hours manually inspecting logs, tracing dependencies, identifying root causes, and preparing incident reports.
+Instead of manually analyzing thousands of lines of Jenkins console output, JurixAI automatically:
 
-This process is:
-
-❌ Time-consuming
-
-❌ Repetitive
-
-❌ Error-prone
-
-❌ Difficult to scale
-
-As infrastructure grows, Mean Time To Resolution (MTTR) grows with it.
+✅ Captures pipeline failures
+✅ Sends logs through a secure webhook gateway
+✅ Generates AI-powered Root Cause Analysis (RCA)
+✅ Creates enterprise-grade PDF reports
+✅ Delivers remediation guidance to stakeholders
 
 ---
 
-# 💡 The Solution
-
-JurixAI acts as an AI-powered SRE co-pilot.
-
-Instead of forcing engineers to manually investigate failures, JurixAI automatically:
-
-🔍 Collects Jenkins failure logs
-
-🧠 Performs AI-based Root Cause Analysis
-
-📄 Generates structured incident reports
-
-📧 Delivers remediation recommendations
-
-☸️ Operates natively on Kubernetes infrastructure
-
-The result is faster diagnosis, faster recovery, and improved operational reliability.
-
----
-
-# ⚡ End-to-End Workflow
+# ⚡ Execution Pipeline
 
 ```text
-┌─────────────────────────┐
-│ Jenkins Pipeline Fails  │
-└─────────────┬───────────┘
-              │
-              ▼
-┌─────────────────────────┐
-│ Failure Logs Captured   │
-└─────────────┬───────────┘
-              │
-              ▼
-┌─────────────────────────┐
-│ Flask Webhook Gateway   │
-└─────────────┬───────────┘
-              │
-              ▼
-┌─────────────────────────┐
-│ Google Gemini Analysis  │
-└─────────────┬───────────┘
-              │
-              ▼
-┌─────────────────────────┐
-│ Root Cause Analysis     │
-└─────────────┬───────────┘
-              │
-              ▼
-┌─────────────────────────┐
-│ PDF Incident Report     │
-└─────────────┬───────────┘
-              │
-              ▼
-┌─────────────────────────┐
-│ SMTP Alert Delivery     │
-└─────────────┬───────────┘
-              │
-              ▼
-📧 SRE / DevOps Team
+🚨 Jenkins Pipeline Failure
+            │
+            ▼
+📡 Bash Log Collector
+            │
+            ▼
+🌐 Flask Webhook Gateway
+            │
+            ▼
+🤖 Google Gemini AI Engine
+            │
+            ▼
+🔍 Root Cause Analysis
+            │
+            ▼
+📄 Automated PDF Report
+            │
+            ▼
+📧 SMTP Notification Service
+            │
+            ▼
+🛡️ SRE Team Response
 ```
 
 ---
 
-# 🎯 Key Highlights
+# 🎯 Key Features
 
-### 🤖 AI-Driven RCA Engine
+### 🤖 AI-Powered Root Cause Analysis
 
-Leverages Google Gemini to identify deployment failures, infrastructure bottlenecks, configuration errors, and application issues.
+Utilizes Google Gemini AI to identify deployment, infrastructure, networking, and application failures.
 
-### 🚨 Automated Incident Detection
+### 📄 Automated Incident Reporting
 
-Monitors Jenkins failures and triggers intelligent investigation workflows.
+Generates structured PDF reports containing RCA findings and remediation steps.
 
-### 📄 Enterprise Incident Reporting
+### 🚨 Real-Time Failure Detection
 
-Creates structured PDF reports suitable for operational audits and postmortem reviews.
+Captures Jenkins failures directly through native webhook integration.
 
-### 📧 Smart Alerting System
+### 📧 Intelligent Notification Engine
 
-Delivers incident summaries and remediation steps directly to stakeholders.
+Sends detailed email alerts with attached reports to stakeholders.
 
-### ☸️ Cloud-Native Deployment
+### ☸️ Kubernetes Native
 
-Designed for Docker and Kubernetes environments with secure secret management and namespace isolation.
+Built for containerized deployments using Docker and Kubernetes.
 
-### 🔒 Secure by Design
+### 🔒 Secure Secret Management
 
-Protects sensitive credentials through Kubernetes Secrets and isolated workloads.
-
----
-
-# 🛠 Technology Stack
-
-| Layer             | Technology        |
-| ----------------- | ----------------- |
-| AI Engine         | Google Gemini API |
-| Backend           | Python, Flask     |
-| CI/CD             | Jenkins           |
-| Container Runtime | Docker            |
-| Orchestration     | Kubernetes (Kind) |
-| Reporting         | ReportLab         |
-| Notifications     | SMTP              |
-| Frontend          | HTML, CSS         |
+Sensitive credentials are isolated through Kubernetes Secrets.
 
 ---
 
-# 📈 Business Impact
+# 🏗️ Architecture
 
-| Metric                         | Improvement |
-| ------------------------------ | ----------- |
-| Log Investigation Time         | Reduced     |
-| Incident Response Speed        | Increased   |
-| Mean Time To Resolution (MTTR) | Reduced     |
-| Manual Debugging Effort        | Minimized   |
-| Operational Visibility         | Improved    |
+```text
+                  Jenkins Pipeline
+                         │
+                         ▼
+                 Failure Detection
+                         │
+                         ▼
+                 Webhook Gateway
+                         │
+        ┌────────────────┴────────────────┐
+        ▼                                 ▼
+ Google Gemini AI                 PDF Generator
+        │                                 │
+        └────────────────┬────────────────┘
+                         ▼
+                 SMTP Alert Engine
+                         │
+                         ▼
+                    Admin Inbox
+```
+
+---
+
+# 📂 Project Structure
+
+```bash
+JurixAI-SRE-Kernel/
+│
+├── k8s/
+│   ├── Namespace.yml
+│   ├── Secret.yml
+│   ├── deployment.yml
+│   ├── Service.yml
+│   └── ingress.yml
+│
+├── templates/
+│   └── index.html
+│
+├── static/
+│   └── css/
+│       └── style.css
+│
+├── app.py
+├── Dockerfile
+├── requirements.txt
+└── Jenkinsfile
+```
+
+---
+
+# 🛠️ Technology Stack
+
+| Layer         | Technology        |
+| ------------- | ----------------- |
+| Backend       | Python, Flask     |
+| AI Engine     | Google Gemini API |
+| CI/CD         | Jenkins           |
+| Containers    | Docker            |
+| Orchestration | Kubernetes (Kind) |
+| Reporting     | ReportLab         |
+| Notifications | SMTP              |
+| Frontend      | HTML, CSS         |
+
+---
+
+# ☸️ Kubernetes Deployment
+
+```bash
+# Create Cluster
+kind create cluster --name jurixai-cluster
+
+# Create Namespace
+kubectl apply -f k8s/Namespace.yml
+
+# Create Secrets
+kubectl apply -f k8s/Secret.yml
+
+# Deploy Application
+kubectl apply -f k8s/deployment.yml
+
+# Expose Service
+kubectl apply -f k8s/Service.yml
+
+# Verify
+kubectl get all -n jurixai-sre
+```
+
+---
+
+# 🚨 Jenkins Integration
+
+The included Jenkinsfile automatically executes a failure hook whenever the pipeline enters a failed state.
+
+```groovy
+post {
+    failure {
+        // Capture Logs
+        // Send Webhook
+        // Generate RCA
+        // Dispatch Alert
+    }
+}
+```
 
 ---
 
@@ -170,7 +207,7 @@ Protects sensitive credentials through Kubernetes Secrets and isolated workloads
 
 ### 🛡️ Nitin Panwar
 
-Project Lead • DevOps Engineer • System Architect
+Project Lead & System Infrastructure Architect
 
 ### 📑 Gungun Kumari
 
@@ -188,10 +225,10 @@ Backend Support Engineer
 
 <div align="center">
 
-# 🚀 From Reactive Troubleshooting to Intelligent Operations
+## 🌟 From Failure Detection to Automated Resolution
 
-### Built for Reliability. Powered by AI.
+### Built by Developers. Designed for Reliability.
 
-⭐ If you like this project, consider giving it a star.
+⭐ Star the repository if you found this project useful.
 
 </div>
