@@ -1,9 +1,10 @@
-pipeline {
+cpipeline {
     agent any
 
     environment {
         NAMESPACE = "jurix"
         IMAGE = "jurixai"
+        SONAR_HOME= tool "sonar"
     }
 
     stages {
@@ -19,7 +20,20 @@ pipeline {
                 echo "code clone successful......"
             }
         }
-
+        stage("quality analysiy by soanr"){
+            steps{
+                withSonarQubeEnv("sonar"){
+                    sh "$SONAR_HOME/bin/sonar-scanner -Dsonar.projectName=jurix-ai -Dsonar.projectKey=jurix-ai"
+                }
+            }
+        }
+        stage("check image by trivy"){
+            steps{
+                echo "start checking your image vulerbilites by trivy......"
+                sh "trivy image -s HIGH,CRITICAL --ignore-unfixed $IMAGE"
+                echo "scanning successfully......."
+            }
+        }
         stage("build") {
             steps {
 
